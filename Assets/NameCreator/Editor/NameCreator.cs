@@ -9,6 +9,8 @@ using System.IO;
 [InitializeOnLoad]
 public class NameCreator
 {
+    public const string indent = "    ";
+    
     [MenuItem("Assets/Name Creator/Force Rebuilds", true)]
     static bool Validate()
     {
@@ -157,24 +159,24 @@ public class NameCreator
                 continue;
 
             builder.AppendFormat(@"
-	/// <summary>
-	/// return ""{0}""
- 	/// </summary>
-	public const string @{1} = ""{0}"";", name, Replace(name)).AppendLine();
+    /// <summary>
+    /// return ""{0}""
+    /// </summary>
+    public const string @{1} = ""{0}"";", name, Replace(name)).AppendLine();
         }
     }
 
     static void AppendArrayText(StringBuilder builder, IList<string> names)
     {
-        builder.Append("\n\t").AppendLine("/// <summary>");
+        builder.Append("\n").Append(indent).AppendLine("/// <summary>");
 
         for (var i = 0; i < names.Count; i++)
         {
-            builder.Append("\t").AppendFormat("/// <para>{0}. \"{1}\"</para>", i, names[i]).AppendLine();
+            builder.Append(indent).AppendFormat("/// <para>{0}. \"{1}\"</para>", i, names[i]).AppendLine();
         }
 
-        builder.Append("\t").AppendLine("/// </summary>");
-        builder.Append("\t").Append("public static readonly string[] names = new string[]{");
+        builder.Append(indent).AppendLine("/// </summary>");
+        builder.Append(indent).Append("public static readonly string[] names = new string[]{");
 
         foreach (var name in names)
         {
