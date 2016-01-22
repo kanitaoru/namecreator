@@ -86,7 +86,7 @@ public class NameCreator
             Build("Scene", EditorBuildSettings.scenes.Where(scene => scene.enabled).Select<EditorBuildSettingsScene, string>(scene => Path.GetFileNameWithoutExtension(scene.path)).ToArray());
         }
         AssetDatabase.StopAssetEditing();
-        EditorUtility.UnloadUnusedAssets();
+        EditorUtility.UnloadUnusedAssetsImmediate();
         AssetDatabase.Refresh(ImportAssetOptions.ImportRecursive);
     }
 
