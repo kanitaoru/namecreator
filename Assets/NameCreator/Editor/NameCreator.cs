@@ -154,7 +154,7 @@ public class NameCreator
         foreach (var name in _names)
         {
             if (string.IsNullOrEmpty(name))
-                return;
+                continue;
 
             builder.AppendFormat(@"
 	/// <summary>
